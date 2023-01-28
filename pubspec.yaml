@@ -1,10 +1,10 @@
 name: chinese_font_library
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/LastMonopoly/chinese_font_library
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ">=2.19.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
