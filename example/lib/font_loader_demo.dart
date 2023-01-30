@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+enum FontSource { system, asset, file, url }
 
 class FontLoaderDemo extends StatefulWidget {
   const FontLoaderDemo({super.key});
@@ -14,10 +17,64 @@ class FontLoaderDemo extends StatefulWidget {
   State<FontLoaderDemo> createState() => _FontLoaderDemoState();
 }
 
-enum FontSource { system, file, url }
-
 class _FontLoaderDemoState extends State<FontLoaderDemo> {
-  FontSource selectedFontSource = FontSource.file;
+  late final String fontFamily;
+
+  TextStyle defaultTextStyle = const TextStyle(fontSize: 15);
+
+  late FontSource _selectedFontSource;
+
+  FontSource get selectedFontSource => _selectedFontSource;
+
+  set selectedFontSource(FontSource s) {
+    setState(() {
+      _selectedFontSource = s;
+      switch (s) {
+        case FontSource.system:
+          defaultTextStyle = const TextStyle();
+          break;
+        case FontSource.asset:
+        case FontSource.file:
+        case FontSource.url:
+          defaultTextStyle = TextStyle(
+            fontFamily: fontFamily,
+            fontSize: 15,
+          );
+          break;
+      }
+    });
+    loadFont();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fontFamily = Random().nextInt(100000).toString();
+    selectedFontSource = FontSource.asset;
+  }
+
+  loadFont() {
+    final loader = FontLoader(fontFamily);
+    switch (selectedFontSource) {
+      case FontSource.system:
+        break;
+      case FontSource.asset:
+        final fontData = rootBundle.load('assets/Lato-Regular.ttf');
+        loader.addFont(fontData);
+        loader.load().then((_) => setState(() {}));
+        break;
+      case FontSource.file:
+        final fontData = rootBundle.load('assets/Lato-Italic.ttf');
+        loader.addFont(fontData);
+        loader.load().then((_) => setState(() {}));
+        break;
+      case FontSource.url:
+        final fontData = rootBundle.load('assets/Lato-Light.ttf');
+        loader.addFont(fontData);
+        loader.load().then((_) => setState(() {}));
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +85,16 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
           PopupMenuButton<FontSource>(
             initialValue: selectedFontSource,
             onSelected: (FontSource item) {
-              setState(() {
-                selectedFontSource = item;
-              });
+              selectedFontSource = item;
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<FontSource>>[
               PopupMenuItem<FontSource>(
                 value: FontSource.system,
                 child: Text('From ${FontSource.system.name}'),
+              ),
+              PopupMenuItem<FontSource>(
+                value: FontSource.asset,
+                child: Text('From ${FontSource.asset.name}'),
               ),
               PopupMenuItem<FontSource>(
                 value: FontSource.file,
@@ -49,7 +108,10 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
           )
         ],
       ),
-      body: const DeviceInfo(),
+      body: DefaultTextStyle(
+        style: defaultTextStyle,
+        child: const DeviceInfo(),
+      ),
     );
   }
 }
@@ -82,9 +144,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
                 padding: const EdgeInsets.all(15),
                 child: Text(
                   property,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
               ),
               Expanded(
@@ -94,6 +154,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
                     '${deviceData[property]}',
                     maxLines: 10,
                     overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w100),
                   ),
                 ),
               ),
