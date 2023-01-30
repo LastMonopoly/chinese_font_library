@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'dynamic_font.dart';
+
 enum FontSource { system, asset, file, url }
 
 class FontLoaderDemo extends StatefulWidget {
@@ -54,26 +56,30 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
   }
 
   loadFont() {
-    final loader = FontLoader(fontFamily);
+    DynamicFont? font;
     switch (selectedFontSource) {
       case FontSource.system:
         break;
       case FontSource.asset:
-        final fontData = rootBundle.load('assets/Lato-Regular.ttf');
-        loader.addFont(fontData);
-        loader.load().then((_) => setState(() {}));
+        font = DynamicFont.asset(
+          fontFamily: fontFamily,
+          path: 'assets/Lato-Regular.ttf',
+        );
         break;
       case FontSource.file:
-        final fontData = rootBundle.load('assets/Lato-Italic.ttf');
-        loader.addFont(fontData);
-        loader.load().then((_) => setState(() {}));
+        font = DynamicFont.asset(
+          fontFamily: fontFamily,
+          path: 'assets/Lato-Italic.ttf',
+        );
         break;
       case FontSource.url:
-        final fontData = rootBundle.load('assets/Lato-Light.ttf');
-        loader.addFont(fontData);
-        loader.load().then((_) => setState(() {}));
+        font = DynamicFont.asset(
+          fontFamily: fontFamily,
+          path: 'assets/Lato-Light.ttf',
+        );
         break;
     }
+    font?.load().then((_) => setState(() {}));
   }
 
   @override
@@ -154,7 +160,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
                     '${deviceData[property]}',
                     maxLines: 10,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.w100),
+                    style: const TextStyle(fontWeight: FontWeight.w300),
                   ),
                 ),
               ),
