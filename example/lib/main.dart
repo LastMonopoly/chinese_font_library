@@ -36,6 +36,7 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true).copyWith(
         textTheme: useDefaultChineseFont ? DefaultChineseFont.textTheme : null,
+        appBarTheme: const AppBarTheme(centerTitle: false),
       ),
       home: Scaffold(
         appBar: currentPageIndex < 2
@@ -50,7 +51,6 @@ class _AppState extends State<App> {
                         });
                       })
                 ],
-                centerTitle: false,
               )
             : null,
         bottomNavigationBar: NavigationBar(

@@ -8,53 +8,129 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FontLoaderDemo extends StatefulWidget {
-  const FontLoaderDemo({Key? key}) : super(key: key);
+  const FontLoaderDemo({super.key});
 
   @override
   State<FontLoaderDemo> createState() => _FontLoaderDemoState();
 }
 
+enum FontSource { system, file, url }
+
 class _FontLoaderDemoState extends State<FontLoaderDemo> {
+  FontSource selectedFontSource = FontSource.file;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Load font from ${selectedFontSource.name}'),
+        actions: [
+          PopupMenuButton<FontSource>(
+            initialValue: selectedFontSource,
+            onSelected: (FontSource item) {
+              setState(() {
+                selectedFontSource = item;
+              });
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<FontSource>>[
+              PopupMenuItem<FontSource>(
+                value: FontSource.system,
+                child: Text('From ${FontSource.system.name}'),
+              ),
+              PopupMenuItem<FontSource>(
+                value: FontSource.file,
+                child: Text('From ${FontSource.file.name}'),
+              ),
+              PopupMenuItem<FontSource>(
+                value: FontSource.url,
+                child: Text('From ${FontSource.url.name}'),
+              ),
+            ],
+          )
+        ],
+      ),
+      body: const DeviceInfo(),
+    );
+  }
+}
+
+class DeviceInfo extends StatefulWidget {
+  const DeviceInfo({Key? key}) : super(key: key);
+
+  @override
+  State<DeviceInfo> createState() => _DeviceInfoState();
+}
+
+class _DeviceInfoState extends State<DeviceInfo> {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  Map<String, dynamic> _deviceData = <String, dynamic>{};
+  Map<String, dynamic> deviceData = <String, dynamic>{};
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    initDeviceData();
   }
 
-  Future<void> initPlatformState() async {
-    var deviceData = <String, dynamic>{};
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: deviceData.keys.map(
+        (String property) {
+          return Row(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: Text(
+                  property,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Text(
+                    '${deviceData[property]}',
+                    maxLines: 10,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ).toList(),
+    );
+  }
+
+  Future<void> initDeviceData() async {
+    var data = <String, dynamic>{};
 
     try {
       if (kIsWeb) {
-        deviceData = _readWebBrowserInfo(await deviceInfoPlugin.webBrowserInfo);
+        data = _readWebBrowserInfo(await deviceInfoPlugin.webBrowserInfo);
       } else {
         if (Platform.isAndroid) {
-          deviceData =
-              _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
+          data = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
         } else if (Platform.isIOS) {
-          deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
+          data = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
         } else if (Platform.isLinux) {
-          deviceData = _readLinuxDeviceInfo(await deviceInfoPlugin.linuxInfo);
+          data = _readLinuxDeviceInfo(await deviceInfoPlugin.linuxInfo);
         } else if (Platform.isMacOS) {
-          deviceData = _readMacOsDeviceInfo(await deviceInfoPlugin.macOsInfo);
+          data = _readMacOsDeviceInfo(await deviceInfoPlugin.macOsInfo);
         } else if (Platform.isWindows) {
-          deviceData =
-              _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo);
+          data = _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo);
         }
       }
     } on PlatformException {
-      deviceData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
+      data = <String, dynamic>{'Error:': 'Failed to get platform version.'};
     }
 
     if (!mounted) return;
 
     setState(() {
-      _deviceData = deviceData;
+      deviceData = data;
     });
   }
 
@@ -193,56 +269,5 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
       'releaseId': data.releaseId,
       'deviceId': data.deviceId,
     };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          kIsWeb
-              ? 'Web Browser info'
-              : Platform.isAndroid
-                  ? 'Android Device Info'
-                  : Platform.isIOS
-                      ? 'iOS Device Info'
-                      : Platform.isLinux
-                          ? 'Linux Device Info'
-                          : Platform.isMacOS
-                              ? 'MacOS Device Info'
-                              : Platform.isWindows
-                                  ? 'Windows Device Info'
-                                  : '',
-        ),
-      ),
-      body: ListView(
-        children: _deviceData.keys.map(
-          (String property) {
-            return Row(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    property,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Expanded(
-                    child: Container(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-                  child: Text(
-                    '${_deviceData[property]}',
-                    maxLines: 10,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                )),
-              ],
-            );
-          },
-        ).toList(),
-      ),
-    );
   }
 }
