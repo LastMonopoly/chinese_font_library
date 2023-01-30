@@ -73,13 +73,16 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
         );
         break;
       case FontSource.url:
-        font = DynamicFont.asset(
+        font = DynamicFont.url(
           fontFamily: fontFamily,
-          path: 'assets/Lato-Light.ttf',
+          url:
+              'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/Lato-Light.ttf',
         );
         break;
     }
-    font?.load().then((_) => setState(() {}));
+    font?.load().then((_) {
+      if (!mounted) setState(() {});
+    });
   }
 
   @override
