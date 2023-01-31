@@ -7,17 +7,24 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-enum _FontSource { asset, url }
+enum _FontSource { asset, file, url }
 
 class DynamicFont {
   final String fontFamily;
   final String uri;
   final _FontSource _source;
 
-  DynamicFont.asset({required this.fontFamily, required String path})
+  /// Use the font from AssetBundle, [key] is the same as in [rootBundle.load]
+  DynamicFont.asset({required this.fontFamily, required String key})
       : _source = _FontSource.asset,
-        uri = path;
+        uri = key;
 
+  /// Use the font from [filepath]
+  DynamicFont.file({required this.fontFamily, required String filepath})
+      : _source = _FontSource.file,
+        uri = filepath;
+
+  /// Download the font, save to the device, then use it when needed
   DynamicFont.url({required this.fontFamily, required String url})
       : _source = _FontSource.url,
         uri = url;
@@ -33,6 +40,18 @@ class DynamicFont {
           return true;
         } catch (e) {
           debugPrint("Font asset error!!!");
+          debugPrint(e.toString());
+          return false;
+        }
+      case _FontSource.file:
+        try {
+          await loadFontFromList(
+            File(uri).readAsBytesSync(),
+            fontFamily: fontFamily,
+          );
+          return true;
+        } catch (e) {
+          debugPrint("Font file error!!!");
           debugPrint(e.toString());
           return false;
         }
@@ -52,16 +71,31 @@ class DynamicFont {
   }
 }
 
-FutureOr<Uint8List> downloadFont(String url) async {
+Future<Uint8List> downloadFont(String url, {bool overwrite = false}) async {
   final uri = Uri.parse(url);
   final filename = uri.pathSegments.last;
   final dir = (await getApplicationSupportDirectory()).path;
   final file = File('$dir/$filename');
 
-  if (file.existsSync()) {
+  if (file.existsSync() && !overwrite) {
     return file.readAsBytesSync();
   }
 
+  final bytes = await downloadBytes(uri);
+  file.writeAsBytes(bytes);
+  return bytes;
+}
+
+Future<void> downloadFontTo(String url,
+    {required String filepath, bool overwrite = false}) async {
+  final uri = Uri.parse(url);
+  final file = File(filepath);
+
+  if (file.existsSync() && !overwrite) return;
+  file.writeAsBytesSync(await downloadBytes(uri));
+}
+
+Future<Uint8List> downloadBytes(Uri uri) async {
   final client = http.Client();
   final request = http.Request('GET', uri);
   final response =
@@ -71,13 +105,21 @@ FutureOr<Uint8List> downloadFont(String url) async {
     throw HttpException("status code ${response.statusCode}");
   }
 
-  List<int> rawData = [];
+  List<int> bytes = [];
+  double prevPercent = 0;
   await response.stream.listen((List<int> chunk) {
-    rawData.addAll(chunk);
-    debugPrint('download font: ${rawData.length}');
+    bytes.addAll(chunk);
+
+    if (response.contentLength == null) {
+      debugPrint('download font: ${bytes.length} bytes');
+    } else {
+      final percent = ((bytes.length / response.contentLength!) * 100);
+      if (percent - prevPercent > 15 || percent > 99) {
+        debugPrint('download font: ${percent.toStringAsFixed(1)}%');
+        prevPercent = percent;
+      }
+    }
   }).asFuture();
 
-  final Uint8List bytes = Uint8List.fromList(rawData);
-  file.writeAsBytes(bytes);
-  return bytes;
+  return Uint8List.fromList(bytes);
 }

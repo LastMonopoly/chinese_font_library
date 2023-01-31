@@ -7,6 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'dynamic_font.dart';
 
@@ -55,7 +56,7 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
     selectedFontSource = FontSource.asset;
   }
 
-  loadFont() {
+  loadFont() async {
     DynamicFont? font;
     switch (selectedFontSource) {
       case FontSource.system:
@@ -63,14 +64,19 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
       case FontSource.asset:
         font = DynamicFont.asset(
           fontFamily: fontFamily,
-          path: 'assets/Lato-Regular.ttf',
+          key: 'assets/Lato-Regular.ttf',
         );
         break;
       case FontSource.file:
-        font = DynamicFont.asset(
-          fontFamily: fontFamily,
-          path: 'assets/Lato-Italic.ttf',
-        );
+        const url =
+            'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/Lato-Italic.ttf';
+        final uri = Uri.parse(url);
+        final filename = uri.pathSegments.last;
+        final dir = (await getApplicationSupportDirectory()).path;
+        final filepath = '$dir/$filename';
+        await downloadFontTo(url, filepath: filepath, overwrite: true);
+
+        font = DynamicFont.file(fontFamily: fontFamily, filepath: filepath);
         break;
       case FontSource.url:
         font = DynamicFont.url(
