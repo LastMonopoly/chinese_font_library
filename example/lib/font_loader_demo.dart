@@ -80,8 +80,8 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
         );
         break;
     }
-    font?.load().then((_) {
-      if (!mounted) setState(() {});
+    font?.load().then((success) {
+      if (success && mounted) setState(() {});
     });
   }
 

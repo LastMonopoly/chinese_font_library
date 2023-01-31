@@ -22,18 +22,32 @@ class DynamicFont {
       : _source = _FontSource.url,
         uri = url;
 
-  Future<void> load() async {
+  Future<bool> load() async {
     switch (_source) {
       case _FontSource.asset:
-        final loader = FontLoader(fontFamily);
-        final fontData = rootBundle.load(uri);
-        loader.addFont(fontData);
-        return loader.load();
+        try {
+          final loader = FontLoader(fontFamily);
+          final fontData = rootBundle.load(uri);
+          loader.addFont(fontData);
+          await loader.load();
+          return true;
+        } catch (e) {
+          debugPrint("Font asset error!!!");
+          debugPrint(e.toString());
+          return false;
+        }
       case _FontSource.url:
-        loadFontFromList(
-          await downloadFont(uri),
-          fontFamily: fontFamily,
-        );
+        try {
+          await loadFontFromList(
+            await downloadFont(uri),
+            fontFamily: fontFamily,
+          );
+          return true;
+        } catch (e) {
+          debugPrint("Font download failed!!!");
+          debugPrint(e.toString());
+          return false;
+        }
     }
   }
 }
@@ -41,17 +55,29 @@ class DynamicFont {
 FutureOr<Uint8List> downloadFont(String url) async {
   final uri = Uri.parse(url);
   final filename = uri.pathSegments.last;
-  final dirPath = (await getApplicationSupportDirectory()).path;
-  final filepath = '$dirPath/$filename';
-  final file = File(filepath);
+  final dir = (await getApplicationSupportDirectory()).path;
+  final file = File('$dir/$filename');
 
-  // if (file.existsSync()) {
-  //   return file.readAsBytesSync();
-  // }
+  if (file.existsSync()) {
+    return file.readAsBytesSync();
+  }
 
-  debugPrint("Start download...");
-  final response = await http.get(uri);
-  debugPrint("Done download...");
-  file.writeAsBytesSync(response.bodyBytes);
-  return response.bodyBytes;
+  final client = http.Client();
+  final request = http.Request('GET', uri);
+  final response =
+      await client.send(request).timeout(const Duration(seconds: 5));
+
+  if (response.statusCode != 200) {
+    throw HttpException("status code ${response.statusCode}");
+  }
+
+  List<int> rawData = [];
+  await response.stream.listen((List<int> chunk) {
+    rawData.addAll(chunk);
+    debugPrint('download font: ${rawData.length}');
+  }).asFuture();
+
+  final Uint8List bytes = Uint8List.fromList(rawData);
+  file.writeAsBytes(bytes);
+  return bytes;
 }
