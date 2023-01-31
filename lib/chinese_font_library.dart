@@ -1,5 +1,4 @@
 library chinese_font_library;
 
-import 'package:flutter/material.dart';
-
-part 'default_chinese_font.dart';
+export 'src/default_chinese_font.dart';
+export 'src/dynamic_font.dart';

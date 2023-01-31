@@ -3,13 +3,12 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-
-import 'dynamic_font.dart';
 
 enum FontSource { system, asset, file, url }
 
