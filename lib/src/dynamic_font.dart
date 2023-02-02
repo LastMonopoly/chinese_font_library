@@ -13,6 +13,7 @@ class DynamicFont {
   final String fontFamily;
   final String uri;
   final _FontSource _source;
+  bool? overwrite;
 
   /// Use the font from AssetBundle, [key] is the same as in [rootBundle.load]
   DynamicFont.asset({required this.fontFamily, required String key})
@@ -25,7 +26,8 @@ class DynamicFont {
         uri = filepath;
 
   /// Download the font, save to the device, then use it when needed
-  DynamicFont.url({required this.fontFamily, required String url})
+  DynamicFont.url(
+      {required this.fontFamily, required String url, this.overwrite})
       : _source = _FontSource.url,
         uri = url;
 
@@ -58,7 +60,7 @@ class DynamicFont {
       case _FontSource.url:
         try {
           await loadFontFromList(
-            await downloadFont(uri),
+            await downloadFont(uri, overwrite: overwrite ?? false),
             fontFamily: fontFamily,
           );
           return true;

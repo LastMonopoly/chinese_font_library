@@ -23,11 +23,16 @@ class DefaultChineseFont {
     'mipro-heavy',
   ];
 
-  /// Chinese font family fallback, for most smartphone platforms
+  /// Chinese font family fallback, for most smartphone brands
   static const List<String> fontFamilyFallback = [
     ...appleFontFamily,
     ...xiaomiFontFamily,
   ];
+
+  /// Text style with updated fontFamilyFallback
+  static TextStyle get textStyle {
+    return const TextStyle(fontFamilyFallback: fontFamilyFallback);
+  }
 
   /// Text theme with updated fontFamilyFallback
   static TextTheme get textTheme {

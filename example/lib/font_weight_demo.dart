@@ -25,7 +25,7 @@ class FontWeightDemo extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: FittedBox(
         child: Text(
-          '焦虑时代 一方净土 Hello world',
+          '焦虑时代 一方净土 Hello world 123',
           style: TextStyle(fontWeight: weight),
         ),
       ),

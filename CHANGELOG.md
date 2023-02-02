@@ -1,3 +1,4 @@
-## 0.0.1
+## 0.2.0
 
-* TODO: Describe initial release.
+* Support for default Chinese font family on iOS, macOS
+* Support for dynamically load fonts from url, file and asset

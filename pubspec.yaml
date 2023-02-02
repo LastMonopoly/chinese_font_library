@@ -1,6 +1,6 @@
 name: chinese_font_library
-description: A new Flutter package project.
-version: 0.0.1
+description: Dedicated package for rendering Chinese fonts in Flutter.
+version: 0.2.0
 homepage: https://github.com/LastMonopoly/chinese_font_library
 
 environment:
