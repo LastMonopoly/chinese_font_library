@@ -33,12 +33,12 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
       _selectedFontSource = s;
       switch (s) {
         case FontSource.system:
-          defaultTextStyle = DefaultChineseFont.textStyle;
+          defaultTextStyle = SystemChineseFont.textStyle;
           break;
         case FontSource.asset:
         case FontSource.file:
         case FontSource.url:
-          defaultTextStyle = DefaultChineseFont.textStyle.copyWith(
+          defaultTextStyle = SystemChineseFont.textStyle.copyWith(
             fontFamily: fontFamily,
             fontSize: 15,
           );

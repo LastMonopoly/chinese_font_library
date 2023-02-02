@@ -1,9 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-/// TODO xiaomi
 /// TODO web
 
-class DefaultChineseFont {
+class SystemChineseFont {
   /// Chinese font family fallback, for iOS & macOS
   static const List<String> appleFontFamily = [
     // '.SF UI Text',
@@ -13,17 +14,8 @@ class DefaultChineseFont {
 
   /// Chinese font family fallback, for xiaomi phone & redmi phone
   static const List<String> xiaomiFontFamily = [
+    'miui',
     'mipro',
-    'mipro-thin',
-    'mipro-extralight',
-    'mipro-light',
-    'mipro-normal',
-    'mipro-regular',
-    'mipro-medium',
-    'mipro-demibold',
-    'mipro-semibold',
-    'mipro-bold',
-    'mipro-heavy',
   ];
 
   /// Chinese font family fallback, for most smartphone brands
@@ -32,14 +24,14 @@ class DefaultChineseFont {
     ...xiaomiFontFamily,
   ];
 
-  /// Text style with updated fontFamilyFallback
+  /// Text style with updated fontFamilyFallback & fontVariations
   static TextStyle get textStyle {
-    return const TextStyle(fontFamilyFallback: fontFamilyFallback);
+    return const TextStyle().useSystemChineseFont();
   }
 
-  /// Text theme with updated fontFamilyFallback
+  /// Text theme with updated fontFamilyFallback & fontVariations
   static TextTheme get textTheme {
-    TextStyle style = const TextStyle(fontFamilyFallback: fontFamilyFallback);
+    TextStyle style = const TextStyle().useSystemChineseFont();
 
     return TextTheme(
       displayLarge: style,
@@ -57,6 +49,23 @@ class DefaultChineseFont {
       labelLarge: style,
       labelMedium: style,
       labelSmall: style,
+    );
+  }
+}
+
+extension UseSystemChineseFont on TextStyle {
+  /// Update fontFamilyFallback & fontVariations
+  TextStyle useSystemChineseFont() {
+    final weight = fontWeight ?? FontWeight.normal;
+    return copyWith(
+      fontFamilyFallback: [
+        ...?fontFamilyFallback,
+        ...SystemChineseFont.fontFamilyFallback,
+      ],
+      fontVariations: [
+        ...?fontVariations,
+        FontVariation('wght', (weight.index + 1) * 100),
+      ],
     );
   }
 }

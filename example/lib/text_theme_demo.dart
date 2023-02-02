@@ -1,7 +1,10 @@
+import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
 class TextThemeDemo extends StatelessWidget {
-  const TextThemeDemo({super.key});
+  final bool useDefaultChineseFont;
+
+  const TextThemeDemo({super.key, required this.useDefaultChineseFont});
 
   @override
   Widget build(BuildContext context) {
@@ -9,35 +12,33 @@ class TextThemeDemo extends StatelessWidget {
   }
 
   List<Widget> _buildThemedText(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final textList = <Widget>[];
+    final textTheme = Theme.of(context)
+        .textTheme
+        .merge(useDefaultChineseFont ? SystemChineseFont.textTheme : null);
 
     final styles = <TextStyle?>[
-      textTheme.displayLarge,
-      textTheme.displayMedium,
-      textTheme.displaySmall,
-      textTheme.headlineLarge,
-      textTheme.headlineMedium,
-      textTheme.headlineSmall,
-      textTheme.titleLarge,
-      textTheme.titleMedium,
-      textTheme.titleSmall,
-      textTheme.bodyLarge,
-      textTheme.bodyMedium,
-      textTheme.bodySmall,
-      textTheme.labelLarge,
-      textTheme.labelMedium,
       textTheme.labelSmall,
+      textTheme.labelMedium,
+      textTheme.labelLarge,
+      textTheme.bodySmall,
+      textTheme.bodyMedium,
+      textTheme.bodyLarge,
+      textTheme.titleSmall,
+      textTheme.titleMedium,
+      textTheme.titleLarge,
+      textTheme.headlineSmall,
+      textTheme.headlineMedium,
+      textTheme.headlineLarge,
+      textTheme.displaySmall,
+      textTheme.displayMedium,
+      textTheme.displayLarge,
     ];
-    for (var style in styles) {
-      textList.add(Padding(
-        padding: const EdgeInsets.all(10),
-        child: Text(
-          '给心灵放个假',
-          style: style?.copyWith(fontWeight: FontWeight.w200),
-        ),
-      ));
-    }
-    return textList;
+
+    return styles
+        .map((style) => Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text('给心灵放个假', style: style),
+            ))
+        .toList();
   }
 }

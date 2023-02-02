@@ -1,32 +1,27 @@
+import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
 class FontWeightDemo extends StatelessWidget {
-  const FontWeightDemo({super.key});
+  final bool useDefaultChineseFont;
+  const FontWeightDemo({super.key, required this.useDefaultChineseFont});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
-        _buildFittedText(FontWeight.w100),
-        _buildFittedText(FontWeight.w200),
-        _buildFittedText(FontWeight.w300),
-        _buildFittedText(FontWeight.w400),
-        _buildFittedText(FontWeight.w500),
-        _buildFittedText(FontWeight.w600),
-        _buildFittedText(FontWeight.w700),
-        _buildFittedText(FontWeight.w800),
-        _buildFittedText(FontWeight.w900),
-      ],
+      children:
+          FontWeight.values.map((weight) => _buildFittedText(weight)).toList(),
     );
   }
 
-  _buildFittedText(FontWeight weight) {
+  Widget _buildFittedText(FontWeight weight) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: FittedBox(
         child: Text(
           '焦虑时代 一方净土 Hello world 123',
-          style: TextStyle(fontWeight: weight),
+          style: useDefaultChineseFont
+              ? TextStyle(fontWeight: weight).useSystemChineseFont()
+              : TextStyle(fontWeight: weight),
         ),
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:example/font_loader_demo.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +20,9 @@ class _AppState extends State<App> {
   Widget get content {
     switch (currentPageIndex) {
       case 0:
-        return const FontWeightDemo();
+        return FontWeightDemo(useDefaultChineseFont: useDefaultChineseFont);
       case 1:
-        return const TextThemeDemo();
+        return TextThemeDemo(useDefaultChineseFont: useDefaultChineseFont);
       default:
         return const FontLoaderDemo();
     }
@@ -35,7 +34,6 @@ class _AppState extends State<App> {
       title: 'Theme Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true).copyWith(
-        textTheme: useDefaultChineseFont ? DefaultChineseFont.textTheme : null,
         appBarTheme: const AppBarTheme(centerTitle: false),
       ),
       home: Scaffold(
