@@ -51,13 +51,9 @@ DynamicFont.url(
 
 如有任何意见或建议，请在Github上联系我。
 
-- [ ] Vivo
-- [ ] Oppo
-- [ ] Web
-- [x] 小米 / 红米 / MIUI
-- [x] Windows 10
-- [x] Apple / iOS / macOS
-- [x] 华为 HarmonyOS (自动支持，无需任何操作)
+|  iOS  | Huawei | Xiaomi | macOS | Windows | Vivo  | Oppo  |  Web  |
+| :---: | :----: | :----: | :---: | :-----: | :---: | :---: | :---: |
+|   ✔️   |   ✔️    |   ✔️    |   ✔️   |    ✔️    |
 
 ## Getting started
 
