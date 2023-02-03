@@ -37,7 +37,7 @@ class SystemChineseFont {
 }
 
 extension UseSystemChineseFont on TextStyle {
-  /// Update fontFamilyFallback & fontVariations
+  /// Add fontFamilyFallback & fontVariation to original font style
   TextStyle useSystemChineseFont() {
     return copyWith(
       fontFamilyFallback: [
