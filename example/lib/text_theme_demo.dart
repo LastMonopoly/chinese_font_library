@@ -12,9 +12,7 @@ class TextThemeDemo extends StatelessWidget {
   }
 
   List<Widget> _buildThemedText(BuildContext context) {
-    final textTheme = Theme.of(context)
-        .textTheme
-        .merge(useDefaultChineseFont ? SystemChineseFont.textTheme : null);
+    final textTheme = Theme.of(context).textTheme;
 
     final styles = <TextStyle?>[
       textTheme.labelSmall,
@@ -37,7 +35,12 @@ class TextThemeDemo extends StatelessWidget {
     return styles
         .map((style) => Padding(
               padding: const EdgeInsets.all(10),
-              child: Text('给心灵放个假', style: style),
+              child: Text(
+                '给心灵放个假',
+                style: useDefaultChineseFont
+                    ? style?.useSystemChineseFont()
+                    : style,
+              ),
             ))
         .toList();
   }

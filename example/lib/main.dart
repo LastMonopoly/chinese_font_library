@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> {
     const customFontFamily = "CustomFontFromWeb";
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(

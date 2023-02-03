@@ -28,29 +28,6 @@ class SystemChineseFont {
   static TextStyle get textStyle {
     return const TextStyle().useSystemChineseFont();
   }
-
-  /// Text theme with updated fontFamilyFallback & fontVariations
-  static TextTheme get textTheme {
-    TextStyle style = const TextStyle().useSystemChineseFont();
-
-    return TextTheme(
-      displayLarge: style,
-      displayMedium: style,
-      displaySmall: style,
-      headlineLarge: style,
-      headlineMedium: style,
-      headlineSmall: style,
-      titleLarge: style,
-      titleMedium: style,
-      titleSmall: style,
-      bodyLarge: style,
-      bodyMedium: style,
-      bodySmall: style,
-      labelLarge: style,
-      labelMedium: style,
-      labelSmall: style,
-    );
-  }
 }
 
 extension UseSystemChineseFont on TextStyle {
