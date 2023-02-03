@@ -21,7 +21,7 @@ chinese_font_library 意在优化中文字体的跨平台渲染，目前支持�
 
 Flutter使用的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为normal字重或bold字重，且bold字重为计算后得到的字重，并非原生bold字重，严重影响观感。
 
-解决方案为使用`.useSystemChineseFont()`修改已有的`textStyle`
+解决方案为使用`.useSystemChineseFont()`修改已有的`textStyle`：
 
 ```dart
 Text(
@@ -34,7 +34,7 @@ Text(
 
 如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择。
 
-解决方案为通过网络动态加载字体，仅需下载一次
+解决方案为通过网络动态加载字体，仅需下载一次：
 
 ```dart
 DynamicFont.url(
@@ -49,15 +49,21 @@ DynamicFont.url(
 
 ## Roadmap
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+如有任何意见或建议，请在Github上联系我。
+
+- [ ] Vivo
+- [ ] Oppo
+- [ ] Web
+- [x] 小米 / 红米 / MIUI
+- [x] Windows 10
+- [x] Apple / iOS / macOS
+- [x] 华为 HarmonyOS (自动支持，无需任何操作)
 
 ## Getting started
 
-In the `pubspec.yaml` of your flutter project, add the following dependency:
-
 ```yaml
+pubspec.yaml
+
 dependencies:
   ...
   chinese_font_library: ^0.2.0
