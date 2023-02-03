@@ -19,7 +19,7 @@ chinese_font_library 意在优化中文字体的跨平台渲染，目前支持�
 
 **多字重的渲染**
 
-Flutter使用的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为regular字重或bold字重，且bold字重为通过计算得到的字重，并非原生bold字重，严重影响观感。
+Flutter使用的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为normal字重或bold字重，且bold字重为计算后得到的字重，并非原生bold字重，严重影响观感。
 
 解决方案为使用`.useSystemChineseFont()`修改已有的`textStyle`
 
@@ -32,7 +32,9 @@ Text(
 
 **动态加载字体**
 
-如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择，可以通过网络动态加载
+如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择。
+
+解决方案为通过网络动态加载字体，仅需下载一次
 
 ```dart
 DynamicFont.url(
@@ -43,6 +45,8 @@ DynamicFont.url(
 
 ## Results
 
+![Font weights demo from multiple devices](https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/screenshots/combined.png)
+
 ## Roadmap
 
 TODO: Tell users more about the package: where to find more information, how to
@@ -51,14 +55,10 @@ from the package authors, and more.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+In the `pubspec.yaml` of your flutter project, add the following dependency:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  ...
+  chinese_font_library: ^0.2.0
 ```

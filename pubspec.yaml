@@ -55,3 +55,7 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+
+screenshots:
+  - description: "Font weights demo from multiple devices"
+    path: screenshots/combined.png
