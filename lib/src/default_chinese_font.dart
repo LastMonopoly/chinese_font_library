@@ -18,10 +18,16 @@ class SystemChineseFont {
     'mipro',
   ];
 
+  /// Chinese font family fallback, for windows
+  static const List<String> windowsFontFamily = [
+    'Microsoft YaHei',
+  ];
+
   /// Chinese font family fallback, for most smartphone brands
   static const List<String> fontFamilyFallback = [
     ...appleFontFamily,
     ...xiaomiFontFamily,
+    ...windowsFontFamily,
   ];
 
   /// Text style with updated fontFamilyFallback & fontVariations
