@@ -19,25 +19,25 @@ chinese_font_library 意在优化中文字体的跨平台渲染，目前支持�
 
 **多字重的渲染**
 
-Flutter中的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为regular字重或bold字重，且bold字重为通过计算得到的字重，并非原生bold字重，严重影响观感。
+Flutter使用的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为regular字重或bold字重，且bold字重为通过计算得到的字重，并非原生bold字重，严重影响观感。
 
-解决方案为使用`.useSystemChineseFont()`修改已有的`TextStyle`
+解决方案为使用`.useSystemChineseFont()`修改已有的`textStyle`
 
 ```dart
 Text(
     '你好世界 hello world',
-    style: TextStyle(fontWeight: weight).useSystemChineseFont(),
+    style: TextStyle(fontWeight: FontWeight.w100).useSystemChineseFont(),
 )
 ```
 
 **动态加载字体**
 
-如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择，通过网络加载更为合理
+如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择，可以通过网络动态加载
 
 ```dart
 DynamicFont.url(
-    fontFamily: 'Lato',
-    url: 'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/Lato-Light.ttf',
+    fontFamily: 'CustomFontFromWeb',
+    url: 'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/SmileySans-Oblique.ttf',
 ).load()
 ```
 

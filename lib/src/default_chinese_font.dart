@@ -56,7 +56,6 @@ class SystemChineseFont {
 extension UseSystemChineseFont on TextStyle {
   /// Update fontFamilyFallback & fontVariations
   TextStyle useSystemChineseFont() {
-    final weight = fontWeight ?? FontWeight.normal;
     return copyWith(
       fontFamilyFallback: [
         ...?fontFamilyFallback,
@@ -64,7 +63,8 @@ extension UseSystemChineseFont on TextStyle {
       ],
       fontVariations: [
         ...?fontVariations,
-        FontVariation('wght', (weight.index + 1) * 100),
+        if (fontWeight != null)
+          FontVariation('wght', (fontWeight!.index + 1) * 100),
       ],
     );
   }
