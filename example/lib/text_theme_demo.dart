@@ -2,9 +2,9 @@ import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
 class TextThemeDemo extends StatelessWidget {
-  final bool useDefaultChineseFont;
+  final bool useSystemChineseFont;
 
-  const TextThemeDemo({super.key, required this.useDefaultChineseFont});
+  const TextThemeDemo({super.key, required this.useSystemChineseFont});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class TextThemeDemo extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Text(
                 '给心灵放个假',
-                style: useDefaultChineseFont
+                style: useSystemChineseFont
                     ? style?.useSystemChineseFont()
                     : style,
               ),

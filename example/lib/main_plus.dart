@@ -14,15 +14,15 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  bool useDefaultChineseFont = true;
+  bool useSystemChineseFont = true;
   int currentPageIndex = 0;
 
   Widget get content {
     switch (currentPageIndex) {
       case 0:
-        return FontWeightDemo(useDefaultChineseFont: useDefaultChineseFont);
+        return FontWeightDemo(useSystemChineseFont: useSystemChineseFont);
       case 1:
-        return TextThemeDemo(useDefaultChineseFont: useDefaultChineseFont);
+        return TextThemeDemo(useSystemChineseFont: useSystemChineseFont);
       default:
         return const FontLoaderDemo();
     }
@@ -42,10 +42,10 @@ class _AppState extends State<App> {
                 title: const Text('Chinese Font Library Demo'),
                 actions: [
                   Switch(
-                      value: useDefaultChineseFont,
+                      value: useSystemChineseFont,
                       onChanged: (value) {
                         setState(() {
-                          useDefaultChineseFont = value;
+                          useSystemChineseFont = value;
                         });
                       })
                 ],

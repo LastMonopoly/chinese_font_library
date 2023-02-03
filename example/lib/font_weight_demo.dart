@@ -2,8 +2,8 @@ import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
 class FontWeightDemo extends StatelessWidget {
-  final bool useDefaultChineseFont;
-  const FontWeightDemo({super.key, required this.useDefaultChineseFont});
+  final bool useSystemChineseFont;
+  const FontWeightDemo({super.key, required this.useSystemChineseFont});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FontWeightDemo extends StatelessWidget {
       child: FittedBox(
         child: Text(
           '焦虑时代 一方净土 Hello world 123',
-          style: useDefaultChineseFont
+          style: useSystemChineseFont
               ? TextStyle(fontWeight: weight).useSystemChineseFont()
               : TextStyle(fontWeight: weight),
         ),
