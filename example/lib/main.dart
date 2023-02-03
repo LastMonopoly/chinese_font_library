@@ -1,81 +1,53 @@
-import 'package:example/font_loader_demo.dart';
+import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
-import 'font_weight_demo.dart';
-import 'text_theme_demo.dart';
-
-void main() => runApp(const App());
-
-class App extends StatefulWidget {
-  const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _AppState extends State<App> {
-  bool useDefaultChineseFont = true;
-  int currentPageIndex = 0;
-
-  Widget get content {
-    switch (currentPageIndex) {
-      case 0:
-        return FontWeightDemo(useDefaultChineseFont: useDefaultChineseFont);
-      case 1:
-        return TextThemeDemo(useDefaultChineseFont: useDefaultChineseFont);
-      default:
-        return const FontLoaderDemo();
-    }
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Theme Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(useMaterial3: true).copyWith(
-        appBarTheme: const AppBarTheme(centerTitle: false),
-      ),
+      theme: ThemeData.dark(useMaterial3: true),
       home: Scaffold(
-        appBar: currentPageIndex < 2
-            ? AppBar(
-                title: const Text('Chinese Font Library Demo'),
-                actions: [
-                  Switch(
-                      value: useDefaultChineseFont,
-                      onChanged: (value) {
-                        setState(() {
-                          useDefaultChineseFont = value;
-                        });
-                      })
-                ],
-              )
-            : null,
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.text_fields),
-              label: 'Font weight',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.palette_outlined),
-              selectedIcon: Icon(Icons.palette),
-              label: 'Text theme',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.translate),
-              label: 'Font loader',
-            ),
-          ],
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.download),
+          ),
         ),
-        body: content,
+        body: const Center(child: FontWeightDemo()),
       ),
+    );
+  }
+}
+
+class FontWeightDemo extends StatefulWidget {
+  const FontWeightDemo({super.key});
+
+  @override
+  State<FontWeightDemo> createState() => _FontWeightDemoState();
+}
+
+class _FontWeightDemoState extends State<FontWeightDemo> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      shrinkWrap: true,
+      children: FontWeight.values
+          .map(
+            (weight) => FittedBox(
+              child: Text(
+                '你好世界 hello world',
+                style: TextStyle(fontWeight: weight).useSystemChineseFont(),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
