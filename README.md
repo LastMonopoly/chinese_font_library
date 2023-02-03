@@ -11,12 +11,43 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+chinese_font_library 意在优化中文字体的跨平台渲染，目前支持：
+- 多字重的渲染
+- 动态加载字体
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+**多字重的渲染**
+
+Flutter中的系统默认字体多为西文字体，因此不同平台下的中文字体通常渲染为regular字重或bold字重，且bold字重为通过计算得到的字重，并非原生bold字重，严重影响观感。
+
+解决方案为使用`.useSystemChineseFont()`修改已有的`TextStyle`
+
+```dart
+Text(
+    '你好世界 hello world',
+    style: TextStyle(fontWeight: weight).useSystemChineseFont(),
+)
+```
+
+**动态加载字体**
+
+如果您不满足于系统内置的中文字体，想使用自己精选的中文字体，而中文字体通常体积较大，放在安装包中并非最佳选择，通过网络加载更为合理
+
+```dart
+DynamicFont.url(
+    fontFamily: 'Lato',
+    url: 'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/Lato-Light.ttf',
+).load()
+```
+
+## Results
+
+## Roadmap
+
+TODO: Tell users more about the package: where to find more information, how to
+contribute to the package, how to file issues, what response they can expect
+from the package authors, and more.
 
 ## Getting started
 
@@ -31,9 +62,3 @@ to `/example` folder.
 ```dart
 const like = 'sample';
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.

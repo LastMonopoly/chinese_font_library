@@ -35,5 +35,3 @@ ios/Flutter/Generated.xcconfig
 android/local.properties
 .flutter-plugins-dependencies
 .flutter-plugins
-macos/Flutter/ephemeral/flutter_export_environment.sh
-macos/Flutter/ephemeral/Flutter-Generated.xcconfig
