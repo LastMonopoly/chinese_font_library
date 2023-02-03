@@ -61,10 +61,22 @@ DynamicFont.url(
 
 ## Getting started
 
-```yaml
-pubspec.yaml
+Inside `pubspec.yaml` file, add the following dependency:
 
+```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.2.0
+  chinese_font_library: ^0.3.0
+```
+
+Then, use `SystemChineseFont.textTheme` for your `ThemeData`
+
+```dart
+return MaterialApp(
+    ...
+    theme: Theme(
+        data: ThemeData(textTheme: SystemChineseFont,textTheme),        
+    ),
+    ...
+)
 ```

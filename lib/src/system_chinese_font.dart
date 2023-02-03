@@ -13,7 +13,7 @@ class SystemChineseFont {
     'PingFang SC',
   ];
 
-  /// Chinese font family fallback, for xiaomi phone & redmi phone
+  /// Chinese font family fallback, for xiaomi & redmi phone
   static const List<String> xiaomiFontFamily = [
     'miui',
     'mipro',
@@ -24,7 +24,7 @@ class SystemChineseFont {
     'Microsoft YaHei',
   ];
 
-  /// Chinese font family fallback, for most smartphone brands
+  /// Chinese font family fallback, for most platforms
   static const List<String> fontFamilyFallback = [
     ...appleFontFamily,
     ...xiaomiFontFamily,
@@ -34,6 +34,11 @@ class SystemChineseFont {
   /// Text style with updated fontFamilyFallback & fontVariations
   static TextStyle get textStyle {
     return const TextStyle().useSystemChineseFont();
+  }
+
+  /// Text theme with updated fontFamilyFallback & fontVariations
+  static TextTheme get textTheme {
+    return Typography().dense.apply(fontFamilyFallback: fontFamilyFallback);
   }
 }
 

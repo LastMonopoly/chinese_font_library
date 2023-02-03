@@ -8,10 +8,22 @@ class TextThemeDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: _buildThemedText(context));
+    if (useSystemChineseFont) {
+      return Theme(
+        data: ThemeData(textTheme: SystemChineseFont.textTheme),
+        child: const ThemedTextList(),
+      );
+    } else {
+      return const ThemedTextList();
+    }
   }
+}
 
-  List<Widget> _buildThemedText(BuildContext context) {
+class ThemedTextList extends StatelessWidget {
+  const ThemedTextList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
     final styles = <TextStyle?>[
@@ -32,16 +44,13 @@ class TextThemeDemo extends StatelessWidget {
       textTheme.displayLarge,
     ];
 
-    return styles
-        .map((style) => Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                '给心灵放个假',
-                style: useSystemChineseFont
-                    ? style?.useSystemChineseFont()
-                    : style,
-              ),
-            ))
-        .toList();
+    return ListView(
+      children: styles
+          .map((style) => Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text('给心灵放个假', style: style),
+              ))
+          .toList(),
+    );
   }
 }
