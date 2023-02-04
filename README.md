@@ -87,6 +87,9 @@ return MaterialApp(
 
 如有任何意见或建议，请在Github上联系我。
 
-|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | Vivo  | Oppo  | Linux |  Web  |
-| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: | :---: |
+|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | 荣耀  | Vivo  | Oppo  | Linux |  Web  |
+| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: | :---: | :---: |
 |   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
+
+## Contributions
+[LiTang0908](https://github.com/litang0908)
