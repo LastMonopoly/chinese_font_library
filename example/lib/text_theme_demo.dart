@@ -10,7 +10,9 @@ class TextThemeDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     if (useSystemChineseFont) {
       return Theme(
-        data: ThemeData(textTheme: SystemChineseFont.merge(const TextTheme())),
+        data: ThemeData(
+          textTheme: SystemChineseFont.textTheme.apply(fontFamily: 'LatoLato'),
+        ),
         child: const ThemedTextList(),
       );
     } else {
@@ -48,7 +50,7 @@ class ThemedTextList extends StatelessWidget {
       children: styles
           .map((style) => Padding(
                 padding: const EdgeInsets.all(10),
-                child: Text('给心灵放个假', style: style),
+                child: Text('给心灵放个假 159', style: style),
               ))
           .toList(),
     );

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
 
@@ -5,19 +7,12 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool useCustomFont = false;
-
-  @override
   Widget build(BuildContext context) {
-    const customFontFamily = "CustomFontFromWeb";
+    final customFontFamily = "CustomFont${Random().nextInt(100)}";
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -30,22 +25,12 @@ class _MyAppState extends State<MyApp> {
                 fontFamily: customFontFamily,
                 url:
                     'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/SmileySans-Oblique.ttf',
-              ).load().then((success) {
-                if (success) {
-                  setState(() {
-                    useCustomFont = true;
-                  });
-                }
-              });
+              ).load();
             },
             icon: const Icon(Icons.download),
           ),
         ),
-        body: Center(
-          child: FontWeightDemo(
-            fontFamily: useCustomFont ? customFontFamily : null,
-          ),
-        ),
+        body: Center(child: FontWeightDemo(fontFamily: customFontFamily)),
       ),
     );
   }

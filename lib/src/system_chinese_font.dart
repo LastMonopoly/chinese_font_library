@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 /// TODO web
 
 class SystemChineseFont {
+  const SystemChineseFont._();
+
   /// Chinese font family fallback, for iOS & macOS
   static const List<String> appleFontFamily = [
     // '.SF UI Text',
@@ -39,12 +41,6 @@ class SystemChineseFont {
   /// Text theme with updated fontFamilyFallback & fontVariations
   static TextTheme get textTheme {
     return Typography().dense.apply(fontFamilyFallback: fontFamilyFallback);
-  }
-
-  /// Creates a new [TextTheme] where each text style using SystemChineseFont
-  /// has been merged with the matching text style from the other object.
-  static TextTheme merge(TextTheme? other) {
-    return textTheme.merge(other);
   }
 }
 
