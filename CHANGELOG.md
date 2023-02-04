@@ -1,3 +1,7 @@
+## 0.3.4
+
+* Use `sans-serif` as the first `fontFamilyFallback`
+
 ## 0.3.3
 
 * Improve example code
