@@ -45,7 +45,7 @@ class SystemChineseFont {
   }
 }
 
-extension UseSystemChineseFont on TextStyle {
+extension TextStyleUseSystemChineseFont on TextStyle {
   /// Add fontFamilyFallback & fontVariation to original font style
   TextStyle useSystemChineseFont() {
     return copyWith(
@@ -59,5 +59,19 @@ extension UseSystemChineseFont on TextStyle {
           FontVariation('wght', (fontWeight!.index + 1) * 100),
       ],
     );
+  }
+}
+
+extension TextThemeUseSystemChineseFont on TextTheme {
+  /// Add fontFamilyFallback & fontVariation to original text theme
+  TextTheme useSystemChineseFont() {
+    return SystemChineseFont.textTheme.merge(this);
+  }
+}
+
+extension ThemeDataUseSystemChineseFont on ThemeData {
+  /// Add fontFamilyFallback & fontVariation to original theme data
+  ThemeData useSystemChineseFont() {
+    return copyWith(textTheme: textTheme.useSystemChineseFont());
   }
 }

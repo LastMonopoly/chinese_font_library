@@ -1,3 +1,8 @@
+## 0.4.0
+
+* Add `.useSystemChineseFont()` to `TextTheme`
+* Add `.useSystemChineseFont()` to `ThemeData`
+  
 ## 0.3.4
 
 * Use `sans-serif` as the first `fontFamilyFallback`

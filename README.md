@@ -30,15 +30,27 @@ Text(
 )
 ```
 
-或者, `SystemChineseFont.textTheme.merge`已有的`textTheme`:
+或者使用`.useSystemChineseFont()`修改已有的`textTheme`:
 
 ```dart
 return MaterialApp(
     ...
     theme: Theme(
         data: ThemeData(
-          textTheme: SystemChineseFont.textTheme.merge(yourCustomTextTheme),
+          textTheme: yourCustomTextTheme.useSystemChineseFont(),
         ),
+    ),
+    ...
+)
+```
+
+也可以使用`.useSystemChineseFont()`修改已有的`themeData`:
+
+```dart
+return MaterialApp(
+    ...
+    theme: Theme(
+        data: yourCustomThemeData.useSystemChineseFont(),
     ),
     ...
 )
@@ -68,19 +80,7 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.3.4
-```
-
-Then, use `SystemChineseFont.textTheme` for your `ThemeData`
-
-```dart
-return MaterialApp(
-    ...
-    theme: Theme(
-        data: ThemeData(textTheme: SystemChineseFont.textTheme),        
-    ),
-    ...
-)
+  chinese_font_library: ^0.4.0
 ```
 
 ## Roadmap
