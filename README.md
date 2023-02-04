@@ -47,14 +47,6 @@ DynamicFont.url(
 
 ![Font weights demo from multiple devices](https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/screenshots/combined.png)
 
-## Roadmap
-
-如有任何意见或建议，请在Github上联系我。
-
-|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | Vivo  | Oppo  |  Web  |
-| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: |
-|   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
-
 ## Getting started
 
 Inside `pubspec.yaml` file, add the following dependency:
@@ -76,3 +68,11 @@ return MaterialApp(
     ...
 )
 ```
+
+## Roadmap
+
+如有任何意见或建议，请在Github上联系我。
+
+|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | Vivo  | Oppo  |  Web  |
+| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: |
+|   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
