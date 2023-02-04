@@ -51,9 +51,9 @@ DynamicFont.url(
 
 如有任何意见或建议，请在Github上联系我。
 
-|  iOS  | Huawei | Xiaomi | macOS | Windows | Vivo  | Oppo  |  Web  |
-| :---: | :----: | :----: | :---: | :-----: | :---: | :---: | :---: |
-|   ✔️   |   ✔️    |   ✔️    |   ✔️   |    ✔️    |
+|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | Vivo  | Oppo  |  Web  |
+| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: |
+|   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
 
 ## Getting started
 
@@ -62,7 +62,7 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.3.0
+  chinese_font_library: ^0.3.1
 ```
 
 Then, use `SystemChineseFont.textTheme` for your `ThemeData`
@@ -71,7 +71,7 @@ Then, use `SystemChineseFont.textTheme` for your `ThemeData`
 return MaterialApp(
     ...
     theme: Theme(
-        data: ThemeData(textTheme: SystemChineseFont,textTheme),        
+        data: ThemeData(textTheme: SystemChineseFont.textTheme),        
     ),
     ...
 )

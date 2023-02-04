@@ -1,3 +1,7 @@
+## 0.3.1
+
+* Improve documentation
+  
 ## 0.3.0
 
 * Add `SystemChineseFont.textTheme` for `ThemeData`
