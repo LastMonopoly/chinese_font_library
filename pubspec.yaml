@@ -1,6 +1,6 @@
 name: chinese_font_library
 description: Helper package for rendering Chinese fonts, including cross-platform Chinese font family fallback & dynamic font loader.
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/LastMonopoly/chinese_font_library
 
 environment:

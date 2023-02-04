@@ -40,6 +40,12 @@ class SystemChineseFont {
   static TextTheme get textTheme {
     return Typography().dense.apply(fontFamilyFallback: fontFamilyFallback);
   }
+
+  /// Creates a new [TextTheme] where each text style using SystemChineseFont
+  /// has been merged with the matching text style from the other object.
+  static TextTheme merge(TextTheme? other) {
+    return textTheme.merge(other);
+  }
 }
 
 extension UseSystemChineseFont on TextStyle {

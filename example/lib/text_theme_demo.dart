@@ -10,7 +10,7 @@ class TextThemeDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     if (useSystemChineseFont) {
       return Theme(
-        data: ThemeData(textTheme: SystemChineseFont.textTheme),
+        data: ThemeData(textTheme: SystemChineseFont.merge(const TextTheme())),
         child: const ThemedTextList(),
       );
     } else {

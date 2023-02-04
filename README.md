@@ -54,7 +54,7 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.3.1
+  chinese_font_library: ^0.3.2
 ```
 
 Then, use `SystemChineseFont.textTheme` for your `ThemeData`
