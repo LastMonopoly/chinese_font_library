@@ -1,7 +1,8 @@
-## 0.3.2
+## 0.3.3
 
-* Add `SystemChineseFont.merge()` for `ThemeData`
-  
+* Improve example code
+* Improve documentation
+
 ## 0.3.1
 
 * Improve documentation
