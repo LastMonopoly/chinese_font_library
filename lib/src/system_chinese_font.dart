@@ -28,6 +28,7 @@ class SystemChineseFont {
 
   /// Chinese font family fallback, for most platforms
   static const List<String> fontFamilyFallback = [
+    "sans-serif",
     ...appleFontFamily,
     ...xiaomiFontFamily,
     ...windowsFontFamily,

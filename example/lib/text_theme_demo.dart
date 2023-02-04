@@ -11,7 +11,16 @@ class TextThemeDemo extends StatelessWidget {
     if (useSystemChineseFont) {
       return Theme(
         data: ThemeData(
-          textTheme: SystemChineseFont.textTheme.apply(fontFamily: 'LatoLato'),
+          textTheme: SystemChineseFont.textTheme
+              .merge(
+                // Custom text theme
+                const TextTheme(
+                  displaySmall: TextStyle(fontStyle: FontStyle.italic),
+                  displayMedium: TextStyle(fontStyle: FontStyle.italic),
+                  displayLarge: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ) // Apply change to the entire fontTheme
+              .apply(fontFamily: 'LatoLato'),
         ),
         child: const ThemedTextList(),
       );

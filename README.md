@@ -91,5 +91,9 @@ return MaterialApp(
 | :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: | :---: | :---: |
 |   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
 
+## Reference
+
+[Flutter 小技巧之玩转字体渲染和问题修复](https://juejin.cn/post/7108463516952035365)
+
 ## Contributions
 [LiTang0908](https://github.com/litang0908)
