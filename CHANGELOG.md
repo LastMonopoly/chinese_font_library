@@ -1,3 +1,7 @@
+## 0.5.0
+
+* Support web build when  `web-renderer` is `html` (instead of `canvaskit`)
+
 ## 0.4.0
 
 * Add `.useSystemChineseFont()` to `TextTheme`

@@ -80,16 +80,16 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.4.0
+  chinese_font_library: ^0.5.0
 ```
 
 ## Roadmap
 
 如有任何意见或建议，请在Github上联系我。
 
-|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | 荣耀  | Vivo  | Oppo  | Linux |  Web  |
-| :---: | :------: | :-------: | :---: | :-----: | :---: | :---: | :---: | :---: | :---: |
-|   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |
+|  iOS  | 华为鸿蒙 | 小米 miui | macOS | Windows | Web html | 荣耀  | Vivo  | Oppo  | Linux |
+| :---: | :------: | :-------: | :---: | :-----: | :------: | :---: | :---: | :---: | :---: |
+|   ✔️   |    ✔️     |     ✔️     |   ✔️   |    ✔️    |    ✔️     |
 
 ## Reference
 
