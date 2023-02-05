@@ -20,12 +20,16 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {
-              DynamicFont.url(
+            onPressed: () async {
+              final stopwatch = Stopwatch()..start();
+              await DynamicFont.url(
                 fontFamily: customFontFamily,
                 url:
                     'https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/example/assets/SmileySans-Oblique.ttf',
               ).load();
+              stopwatch.stop();
+              debugPrint(
+                  "Font loading uses ${stopwatch.elapsedMilliseconds} ms");
             },
             icon: const Icon(Icons.download),
           ),
