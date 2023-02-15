@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customFontFamily = "CustomFont${Random().nextInt(100)}";
+    final customFontFamily = "CustomFont${Random().nextInt(1000)}";
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

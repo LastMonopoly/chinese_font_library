@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-/// TODO vivo, oppo
+import '../chinese_font_library.dart';
+
+/// TODO oppo, 荣耀
 
 class SystemChineseFont {
   const SystemChineseFont._();
@@ -25,13 +27,26 @@ class SystemChineseFont {
     'Microsoft YaHei',
   ];
 
+  static const systemFont = "system-font";
+
+  /// Chinese font family fallback, for VIVO
+  static final vivoSystemFont = DynamicFont.file(
+    fontFamily: systemFont,
+    filepath: '/system/fonts/DroidSansFallbackMonster.ttf',
+  );
+
   /// Chinese font family fallback, for most platforms
-  static const List<String> fontFamilyFallback = [
-    "sans-serif",
-    ...appleFontFamily,
-    ...xiaomiFontFamily,
-    ...windowsFontFamily,
-  ];
+  static List<String> get fontFamilyFallback {
+    vivoSystemFont.load(verbose: false);
+
+    return [
+      systemFont,
+      "sans-serif",
+      ...appleFontFamily,
+      ...xiaomiFontFamily,
+      ...windowsFontFamily,
+    ];
+  }
 
   /// Text style with updated fontFamilyFallback & fontVariations
   static TextStyle get textStyle {

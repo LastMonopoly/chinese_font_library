@@ -32,7 +32,7 @@ class DynamicFont {
       : _source = _FontSource.url,
         uri = url;
 
-  Future<bool> load() async {
+  Future<bool> load({bool verbose = true}) async {
     switch (_source) {
       case _FontSource.asset:
         try {
@@ -42,8 +42,10 @@ class DynamicFont {
           await loader.load();
           return true;
         } catch (e) {
-          debugPrint("Font asset error!!!");
-          debugPrint(e.toString());
+          if (verbose) {
+            debugPrint("Font asset error!!!");
+            debugPrint(e.toString());
+          }
           return false;
         }
       case _FontSource.file:
@@ -54,8 +56,10 @@ class DynamicFont {
           );
           return true;
         } catch (e) {
-          debugPrint("Font file error!!!");
-          debugPrint(e.toString());
+          if (verbose) {
+            debugPrint("Font file error!!!");
+            debugPrint(e.toString());
+          }
           return false;
         }
       case _FontSource.url:
@@ -66,8 +70,10 @@ class DynamicFont {
           );
           return true;
         } catch (e) {
-          debugPrint("Font download failed!!!");
-          debugPrint(e.toString());
+          if (verbose) {
+            debugPrint("Font download failed!!!");
+            debugPrint(e.toString());
+          }
           return false;
         }
     }
