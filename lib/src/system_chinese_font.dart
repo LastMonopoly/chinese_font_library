@@ -46,7 +46,7 @@ class SystemChineseFont {
   /// Chinese font family fallback, for most platforms
   static List<String> get fontFamilyFallback {
     if (!systemFontLoaded) {
-      honorSystemFont.load();
+      // honorSystemFont.load();
       vivoSystemFont.load();
       systemFontLoaded = true;
     }

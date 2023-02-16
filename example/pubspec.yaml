@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_info_plus: ^8.0.0
   path_provider: ^2.0.12
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_driver:

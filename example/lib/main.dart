@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true),
+      localizationsDelegates: const [
+        ...GlobalMaterialLocalizations.delegates,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('zh', ''),
+        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+        Locale('en', ''),
+      ],
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
