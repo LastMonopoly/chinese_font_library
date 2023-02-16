@@ -29,6 +29,8 @@ class SystemChineseFont {
 
   static const systemFont = "system-font";
 
+  static bool systemFontLoaded = false;
+
   /// Chinese font family fallback, for VIVO
   static final vivoSystemFont = DynamicFont.file(
     fontFamily: systemFont,
@@ -37,7 +39,10 @@ class SystemChineseFont {
 
   /// Chinese font family fallback, for most platforms
   static List<String> get fontFamilyFallback {
-    vivoSystemFont.load(verbose: false);
+    if (!systemFontLoaded) {
+      vivoSystemFont.load();
+      systemFontLoaded = true;
+    }
 
     return [
       systemFont,
