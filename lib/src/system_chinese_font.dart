@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../chinese_font_library.dart';
 
-/// TODO oppo, 荣耀
+/// TODO oppo
 
 class SystemChineseFont {
   const SystemChineseFont._();
@@ -31,15 +31,22 @@ class SystemChineseFont {
 
   static bool systemFontLoaded = false;
 
-  /// Chinese font family fallback, for VIVO
+  /// Chinese font family fallback, for VIVO Origin OS 1.0
   static final vivoSystemFont = DynamicFont.file(
     fontFamily: systemFont,
     filepath: '/system/fonts/DroidSansFallbackMonster.ttf',
   );
 
+  /// Chinese font family fallback, for honor Magic UI 4.0
+  static final honorSystemFont = DynamicFont.file(
+    fontFamily: systemFont,
+    filepath: '/system/fonts/DroidSansChinese.ttf',
+  );
+
   /// Chinese font family fallback, for most platforms
   static List<String> get fontFamilyFallback {
     if (!systemFontLoaded) {
+      honorSystemFont.load();
       vivoSystemFont.load();
       systemFontLoaded = true;
     }
