@@ -1,3 +1,7 @@
+## 0.6.0
+
+* Add support for Oppo, Vivo, and Honor
+
 ## 0.5.0
 
 * Support web build when  `web-renderer` is `html` (instead of `canvaskit`)

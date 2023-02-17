@@ -80,7 +80,7 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.5.0
+  chinese_font_library: ^0.6.0
 ```
 
 ## Roadmap
@@ -89,7 +89,7 @@ dependencies:
 
 |  iOS  | 华为 鸿蒙 | 小米 miui | macOS | Windows | Web html | 荣耀  | Vivo  | Oppo  | Linux |
 | :---: | :-------: | :-------: | :---: | :-----: | :------: | :---: | :---: | :---: | :---: |
-|   ✔️   |     ✔️     |     ✔️     |   ✔️   |    ✔️    |    ✔️     |
+|   ✔️   |     ✔️     |     ✔️     |   ✔️   |    ✔️    |    ✔️     |   ✔️   |   ✔️   |   ✔️   |
 
 ## Reference
 

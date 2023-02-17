@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../chinese_font_library.dart';
 
-/// TODO oppo
-
 class SystemChineseFont {
   const SystemChineseFont._();
 
