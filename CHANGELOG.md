@@ -1,3 +1,7 @@
+## 0.6.1
+
+* Update screenshots
+
 ## 0.6.0
 
 * Add support for Oppo, Vivo, and Honor

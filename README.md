@@ -80,7 +80,7 @@ Inside `pubspec.yaml` file, add the following dependency:
 ```yaml
 dependencies:
   ...
-  chinese_font_library: ^0.6.0
+  chinese_font_library: ^0.6.1
 ```
 
 ## Roadmap
