@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -45,7 +46,13 @@ class SystemChineseFont {
   static List<String> get fontFamilyFallback {
     if (!systemFontLoaded) {
       // honorSystemFont.load();
-      vivoSystemFont.load();
+      final vivoFont = File("/system/fonts/VivoFont.ttf");
+      if (vivoFont.existsSync() &&
+          vivoFont
+              .resolveSymbolicLinksSync()
+              .contains("DroidSansFallbackBBK")) {
+        vivoSystemFont.load();
+      }
       systemFontLoaded = true;
     }
 
