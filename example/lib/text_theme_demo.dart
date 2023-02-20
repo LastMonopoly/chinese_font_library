@@ -12,10 +12,10 @@ class TextThemeDemo extends StatelessWidget {
       return Theme(
         data: ThemeData(
           textTheme: const TextTheme(
-            headlineLarge: TextStyle(fontStyle: FontStyle.italic),
-            displaySmall: TextStyle(fontStyle: FontStyle.italic),
-            displayMedium: TextStyle(fontStyle: FontStyle.italic),
-            displayLarge: TextStyle(fontStyle: FontStyle.italic),
+            headlineLarge: TextStyle(),
+            displaySmall: TextStyle(),
+            displayMedium: TextStyle(),
+            displayLarge: TextStyle(),
           ).apply(fontFamily: 'LatoLato').useSystemChineseFont(),
         ),
         child: const ThemedTextList(),

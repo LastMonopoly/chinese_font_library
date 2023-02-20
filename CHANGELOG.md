@@ -1,3 +1,8 @@
+## 1.0.0
+
+* Fix the font loading logic for Vivo
+* Should work on most platforms
+
 ## 0.6.1
 
 * Update screenshots
