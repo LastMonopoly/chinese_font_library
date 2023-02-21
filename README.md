@@ -73,16 +73,6 @@ DynamicFont.url(
 
 ![Font weights demo from multiple devices](https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/screenshots/combined.png)
 
-## Getting started
-
-Inside `pubspec.yaml` file, add the following dependency:
-
-```yaml
-dependencies:
-  ...
-  chinese_font_library: ^1.0.0
-```
-
 ## Roadmap
 
 如有任何意见或建议，请在Github上联系我。
