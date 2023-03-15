@@ -46,13 +46,14 @@ class SystemChineseFont {
   static List<String> get fontFamilyFallback {
     if (!systemFontLoaded) {
       // honorSystemFont.load();
-      final vivoFont = File("/system/fonts/VivoFont.ttf");
-      if (vivoFont.existsSync() &&
-          vivoFont
-              .resolveSymbolicLinksSync()
-              .contains("DroidSansFallbackBBK")) {
-        vivoSystemFont.load();
-      }
+      () async {
+        final vivoFont = File("/system/fonts/VivoFont.ttf");
+        if ((await vivoFont.exists()) &&
+            (await vivoFont.resolveSymbolicLinks())
+                .contains("DroidSansFallbackBBK")) {
+          await vivoSystemFont.load();
+        }
+      }();
       systemFontLoaded = true;
     }
 
