@@ -47,10 +47,10 @@ class DynamicFont {
           return false;
         }
       case _FontSource.file:
-        if (!File(uri).existsSync()) return false;
+        if (!await File(uri).exists()) return false;
         try {
           await loadFontFromList(
-            File(uri).readAsBytesSync(),
+            await File(uri).readAsBytes(),
             fontFamily: fontFamily,
           );
           return true;
@@ -81,8 +81,8 @@ Future<Uint8List> downloadFont(String url, {bool overwrite = false}) async {
   final dir = (await getApplicationSupportDirectory()).path;
   final file = File('$dir/$filename');
 
-  if (file.existsSync() && !overwrite) {
-    return file.readAsBytesSync();
+  if (await file.exists() && !overwrite) {
+    return await file.readAsBytes();
   }
 
   final bytes = await downloadBytes(uri);
@@ -95,8 +95,8 @@ Future<void> downloadFontTo(String url,
   final uri = Uri.parse(url);
   final file = File(filepath);
 
-  if (file.existsSync() && !overwrite) return;
-  file.writeAsBytesSync(await downloadBytes(uri));
+  if (await file.exists() && !overwrite) return;
+  await file.writeAsBytes(await downloadBytes(uri));
 }
 
 Future<Uint8List> downloadBytes(Uri uri) async {
