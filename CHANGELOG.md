@@ -1,3 +1,6 @@
+## 1.0.1
+* Using Asynchronous IO Methods
+
 ## 1.0.0
 
 * Fix the font loading logic for Vivo
