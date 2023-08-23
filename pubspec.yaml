@@ -1,18 +1,18 @@
 name: chinese_font_library
 description: Helper package for rendering Chinese fonts, including cross-platform Chinese font family fallback & dynamic font loader.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/LastMonopoly/chinese_font_library
 
 environment:
-  sdk: ">=2.19.0 <3.0.0"
+  sdk: ">=2.19.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.13.5
-  path_provider: ^2.0.12
+  http: ^1.1.0
+  path_provider: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -66,9 +66,10 @@ class DynamicFont {
             fontFamily: fontFamily,
           );
           return true;
-        } catch (e) {
+        } catch (e, s) {
           debugPrint("Font download failed!!!");
           debugPrint(e.toString());
+          debugPrint(s.toString());
           return false;
         }
     }

@@ -1,4 +1,9 @@
+## 1.0.2
+
+* Update dependencies
+
 ## 1.0.1
+
 * Using Asynchronous IO Methods
 
 ## 1.0.0
