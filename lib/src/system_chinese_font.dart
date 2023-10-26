@@ -72,8 +72,17 @@ class SystemChineseFont {
   }
 
   /// Text theme with updated fontFamilyFallback & fontVariations
-  static TextTheme get textTheme {
-    return Typography().dense.apply(fontFamilyFallback: fontFamilyFallback);
+  static TextTheme textTheme(Brightness brightness) {
+    switch (brightness) {
+      case Brightness.dark:
+        return Typography.material2021()
+            .white
+            .apply(fontFamilyFallback: fontFamilyFallback);
+      case Brightness.light:
+        return Typography.material2021()
+            .black
+            .apply(fontFamilyFallback: fontFamilyFallback);
+    }
   }
 }
 
@@ -96,14 +105,14 @@ extension TextStyleUseSystemChineseFont on TextStyle {
 
 extension TextThemeUseSystemChineseFont on TextTheme {
   /// Add fontFamilyFallback & fontVariation to original text theme
-  TextTheme useSystemChineseFont() {
-    return SystemChineseFont.textTheme.merge(this);
+  TextTheme useSystemChineseFont(Brightness brightness) {
+    return SystemChineseFont.textTheme(brightness).merge(this);
   }
 }
 
 extension ThemeDataUseSystemChineseFont on ThemeData {
   /// Add fontFamilyFallback & fontVariation to original theme data
-  ThemeData useSystemChineseFont() {
-    return copyWith(textTheme: textTheme.useSystemChineseFont());
+  ThemeData useSystemChineseFont(Brightness brightness) {
+    return copyWith(textTheme: textTheme.useSystemChineseFont(brightness));
   }
 }

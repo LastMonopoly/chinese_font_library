@@ -9,6 +9,7 @@ class TextThemeDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (useSystemChineseFont) {
+      final brightness = Theme.of(context).brightness;
       return Theme(
         data: ThemeData(
           textTheme: const TextTheme(
@@ -16,7 +17,7 @@ class TextThemeDemo extends StatelessWidget {
             displaySmall: TextStyle(),
             displayMedium: TextStyle(),
             displayLarge: TextStyle(),
-          ).apply(fontFamily: 'LatoLato').useSystemChineseFont(),
+          ).apply(fontFamily: 'LatoLato').useSystemChineseFont(brightness),
         ),
         child: const ThemedTextList(),
       );
