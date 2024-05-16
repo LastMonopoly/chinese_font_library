@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Migrate to Flutter 3.22.0
+
 ## 1.1.0
 
 * Add Brightness to `useSystemChineseFont` to fix [#4](https://github.com/LastMonopoly/chinese_font_library/issues/4)
