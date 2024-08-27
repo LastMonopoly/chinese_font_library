@@ -128,7 +128,7 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
 }
 
 class DeviceInfo extends StatefulWidget {
-  const DeviceInfo({Key? key}) : super(key: key);
+  const DeviceInfo({super.key});
 
   @override
   State<DeviceInfo> createState() => _DeviceInfoState();
