@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/terminator/fvm/versions/stable"
-export "FLUTTER_APPLICATION_PATH=/Users/terminator/Developer/chinese_font_library"
+export "FLUTTER_ROOT=/Users/xhan/fvm/versions/stable"
+export "FLUTTER_APPLICATION_PATH=/Users/xhan/Developer/Github/chinese_font_library"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.2.0"
