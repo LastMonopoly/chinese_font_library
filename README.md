@@ -7,11 +7,13 @@ chinese_font_library 意在优化中文字体的跨平台渲染，目前支持�
 
 ## Sponsor
 
-本项目由 **[庞征博引](https://pangzhengboyin.com/?utm_source=pubdev&utm_medium=sponsorship&utm_campaign=flutter_packages&utm_content=chinese_font_library_readme)** 赞助。
+<p align="center">
+  <a href="https://pangzhengboyin.com/?utm_source=pubdev&utm_medium=sponsorship&utm_campaign=flutter_packages&utm_content=chinese_font_library_readme_banner">
+    <img src="https://raw.githubusercontent.com/LastMonopoly/chinese_font_library/master/sponsors/pangzhengboyin.png" width="100%" alt="庞征博引 — 想学的，慢慢都会" />
+  </a>
+</p>
 
-> 想学的，慢慢都会。把复杂主题拆成一篇篇 5–10 分钟的阅读，边读边问，按自己的节奏慢慢学懂。
-
-如果这个包帮到了你，欢迎去 [庞征博引](https://pangzhengboyin.com/?utm_source=pubdev&utm_medium=sponsorship&utm_campaign=flutter_packages&utm_content=chinese_font_library_readme) 看看。
+本项目由 [庞征博引](https://pangzhengboyin.com/?utm_source=pubdev&utm_medium=sponsorship&utm_campaign=flutter_packages&utm_content=chinese_font_library_readme_text) 赞助：把复杂主题拆成一篇篇 5–10 分钟的阅读，边读边问，按自己的节奏慢慢学懂。
 
 ## Requirements
 

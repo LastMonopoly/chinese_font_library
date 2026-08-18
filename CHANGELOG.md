@@ -8,7 +8,8 @@
 * Use `FontVariation.weight` instead of the raw `wght` axis name
 * Await the font file write in `downloadFont`, so the cached file is complete
   before the bytes are returned
-* Add `repository`, `issue_tracker`, `topics` & `funding` to `pubspec.yaml`
+* Add `repository`, `issue_tracker` & `topics` to `pubspec.yaml`
+* Add a sponsor section to the README
 
 ## 1.2.0
 
