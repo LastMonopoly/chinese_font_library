@@ -1,0 +1,3 @@
+# The banner is served to pub.dev and GitHub from raw.githubusercontent.com,
+# so the package archive does not need a copy.
+*

@@ -1,0 +1,5 @@
+# Only combined.png is referenced, by pubspec.yaml's `screenshots:` and by the
+# README. The per-device shots stay in the repository but are not worth ~2.5 MB
+# in every `pub get`.
+*
+!combined.png
