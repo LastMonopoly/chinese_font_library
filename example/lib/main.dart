@@ -43,7 +43,8 @@ class MyApp extends StatelessWidget {
               ).load();
               stopwatch.stop();
               debugPrint(
-                  "Font loading uses ${stopwatch.elapsedMilliseconds} ms");
+                "Font loading uses ${stopwatch.elapsedMilliseconds} ms",
+              );
             },
             icon: const Icon(Icons.download),
           ),

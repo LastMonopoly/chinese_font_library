@@ -16,21 +16,23 @@ class DynamicFont {
 
   /// Use the font from AssetBundle, [key] is the same as in [rootBundle.load]
   DynamicFont.asset({required this.fontFamily, required String key})
-      : _source = _FontSource.asset,
-        uri = key;
+    : _source = _FontSource.asset,
+      uri = key;
 
   /// Use the font from [filepath]
   DynamicFont.file({required this.fontFamily, required String filepath})
-      : _source = _FontSource.file,
-        uri = filepath;
+    : _source = _FontSource.file,
+      uri = filepath;
 
   bool? overwrite;
 
   /// Download the font, save to the device, then use it when needed
-  DynamicFont.url(
-      {required this.fontFamily, required String url, this.overwrite})
-      : _source = _FontSource.url,
-        uri = url;
+  DynamicFont.url({
+    required this.fontFamily,
+    required String url,
+    this.overwrite,
+  }) : _source = _FontSource.url,
+       uri = url;
 
   Future<bool> load() async {
     switch (_source) {
@@ -87,12 +89,15 @@ Future<Uint8List> downloadFont(String url, {bool overwrite = false}) async {
   }
 
   final bytes = await downloadBytes(uri);
-  file.writeAsBytes(bytes);
+  await file.writeAsBytes(bytes);
   return bytes;
 }
 
-Future<void> downloadFontTo(String url,
-    {required String filepath, bool overwrite = false}) async {
+Future<void> downloadFontTo(
+  String url, {
+  required String filepath,
+  bool overwrite = false,
+}) async {
   final uri = Uri.parse(url);
   final file = File(filepath);
 
@@ -103,8 +108,9 @@ Future<void> downloadFontTo(String url,
 Future<Uint8List> downloadBytes(Uri uri) async {
   final client = http.Client();
   final request = http.Request('GET', uri);
-  final response =
-      await client.send(request).timeout(const Duration(seconds: 5));
+  final response = await client
+      .send(request)
+      .timeout(const Duration(seconds: 5));
 
   if (response.statusCode != 200) {
     throw HttpException("status code ${response.statusCode}");

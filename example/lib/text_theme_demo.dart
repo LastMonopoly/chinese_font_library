@@ -54,10 +54,12 @@ class ThemedTextList extends StatelessWidget {
 
     return ListView(
       children: styles
-          .map((style) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text('给心灵放个假 159', style: style),
-              ))
+          .map(
+            (style) => Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text('给心灵放个假 159', style: style),
+            ),
+          )
           .toList(),
     );
   }

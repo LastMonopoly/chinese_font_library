@@ -15,15 +15,10 @@ class SystemChineseFont {
   ];
 
   /// Chinese font family fallback, for xiaomi & redmi phone
-  static const List<String> xiaomiFontFamily = [
-    'miui',
-    'mipro',
-  ];
+  static const List<String> xiaomiFontFamily = ['miui', 'mipro'];
 
   /// Chinese font family fallback, for windows
-  static const List<String> windowsFontFamily = [
-    'Microsoft YaHei',
-  ];
+  static const List<String> windowsFontFamily = ['Microsoft YaHei'];
 
   static const systemFont = "system-font";
 
@@ -48,8 +43,9 @@ class SystemChineseFont {
       () async {
         final vivoFont = File("/system/fonts/VivoFont.ttf");
         if ((await vivoFont.exists()) &&
-            (await vivoFont.resolveSymbolicLinks())
-                .contains("DroidSansFallbackBBK")) {
+            (await vivoFont.resolveSymbolicLinks()).contains(
+              "DroidSansFallbackBBK",
+            )) {
           await vivoSystemFont.load();
         }
       }();
@@ -74,13 +70,13 @@ class SystemChineseFont {
   static TextTheme textTheme(Brightness brightness) {
     switch (brightness) {
       case Brightness.dark:
-        return Typography.material2021()
-            .white
-            .apply(fontFamilyFallback: fontFamilyFallback);
+        return Typography.material2021().white.apply(
+          fontFamilyFallback: fontFamilyFallback,
+        );
       case Brightness.light:
-        return Typography.material2021()
-            .black
-            .apply(fontFamilyFallback: fontFamilyFallback);
+        return Typography.material2021().black.apply(
+          fontFamilyFallback: fontFamilyFallback,
+        );
     }
   }
 }
@@ -96,7 +92,7 @@ extension TextStyleUseSystemChineseFont on TextStyle {
       fontVariations: [
         ...?fontVariations,
         if (fontWeight != null)
-          FontVariation('wght', (fontWeight!.index + 1) * 100),
+          FontVariation.weight(fontWeight!.value.toDouble()),
       ],
     );
   }

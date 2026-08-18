@@ -8,8 +8,9 @@ class FontWeightDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children:
-          FontWeight.values.map((weight) => _buildFittedText(weight)).toList(),
+      children: FontWeight.values
+          .map((weight) => _buildFittedText(weight))
+          .toList(),
     );
   }
 

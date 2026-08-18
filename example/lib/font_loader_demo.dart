@@ -54,7 +54,7 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
     selectedFontSource = FontSource.asset;
   }
 
-  loadFont() async {
+  Future<void> loadFont() async {
     DynamicFont? font;
     switch (selectedFontSource) {
       case FontSource.system:
@@ -116,7 +116,7 @@ class _FontLoaderDemoState extends State<FontLoaderDemo> {
                 child: Text('From ${FontSource.url.name}'),
               ),
             ],
-          )
+          ),
         ],
       ),
       body: DefaultTextStyle(
@@ -147,32 +147,30 @@ class _DeviceInfoState extends State<DeviceInfo> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: deviceData.keys.map(
-        (String property) {
-          return Row(
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(15),
+      children: deviceData.keys.map((String property) {
+        return Row(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: Text(
+                property,
+                style: const TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Text(
-                  property,
-                  style: const TextStyle(fontStyle: FontStyle.italic),
+                  '${deviceData[property]}',
+                  maxLines: 10,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.w300),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Text(
-                    '${deviceData[property]}',
-                    maxLines: 10,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
-      ).toList(),
+            ),
+          ],
+        );
+      }).toList(),
     );
   }
 

@@ -33,21 +33,22 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'Theme Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(useMaterial3: true).copyWith(
-        appBarTheme: const AppBarTheme(centerTitle: false),
-      ),
+      theme: ThemeData.dark(
+        useMaterial3: true,
+      ).copyWith(appBarTheme: const AppBarTheme(centerTitle: false)),
       home: Scaffold(
         appBar: currentPageIndex < 2
             ? AppBar(
                 title: const Text('Chinese Font Library Demo'),
                 actions: [
                   Switch(
-                      value: useSystemChineseFont,
-                      onChanged: (value) {
-                        setState(() {
-                          useSystemChineseFont = value;
-                        });
-                      })
+                    value: useSystemChineseFont,
+                    onChanged: (value) {
+                      setState(() {
+                        useSystemChineseFont = value;
+                      });
+                    },
+                  ),
                 ],
               )
             : null,

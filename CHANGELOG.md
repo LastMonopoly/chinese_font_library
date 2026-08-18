@@ -1,3 +1,15 @@
+## 1.3.0
+
+* Migrate to Flutter 3.47.0
+* **Breaking**: require Flutter `>=3.41.0` & Dart `>=3.11.0`
+* Replace the deprecated `FontWeight.index` with `FontWeight.value`, so
+  `useSystemChineseFont()` now keeps arbitrary weights such as `FontWeight(550)`
+  exact instead of rounding them down to the nearest 100
+* Use `FontVariation.weight` instead of the raw `wght` axis name
+* Await the font file write in `downloadFont`, so the cached file is complete
+  before the bytes are returned
+* Add `repository`, `issue_tracker`, `topics` & `funding` to `pubspec.yaml`
+
 ## 1.2.0
 
 * Migrate to Flutter 3.22.0
